@@ -50,10 +50,40 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size()) 
- 
+int step[1001]={0};
+void precomp()
+{
+    for(int i=2;i<=1000;i++)
+    {
+        step[i]=INT_MAX;
+        for(int j=1;j<i;j++)
+        step[i]=min(step[i],step[j]+1);
+    }
+}
 void Gyani()  
 {   
-     
+    ll n,k;
+    cin>>n>>k;
+    ll b[n],cost[n];
+    v64 w;
+    forn(i,n)
+    cin>>b[i],w.pb(step[b[i]]);
+
+    forn(i,n)
+    cin>>cost[i];
+    ll dp[k+1]={0};
+    forn(i,n)
+    cout<<w[i]<<" ";
+    cout<<endl;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=k;j>0;j--)
+        {
+            if(w[i-1]<=j)
+            dp[j]=max(dp[j-1],cost[i-1]+dp[j-w[i-1]]); 
+        }
+    }
+    cout<<dp[k]<<endl;
 } 
  
 int main()
@@ -61,6 +91,7 @@ int main()
 	fast_cin(); 
 	 ll t=1; 
  	 cin >> t; 
+      precomp();
 	while(t--){
          // cout<<"Case#i: ";
 		Gyani();

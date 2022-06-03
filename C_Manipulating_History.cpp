@@ -53,7 +53,23 @@ double eps = 1e-12;
  
 void Gyani()  
 {   
-     
+     ll n;
+     cin>>n;
+     map<char,int>m;
+     for(int i=0;i<=2*n;i++)
+     {
+        string s;
+        cin>>s;
+        for(int j=0;j<s.size();j++)
+        m[s[j]]++;
+     }
+     for(auto it:m)
+     {
+         if(it.se%2==1)
+         {
+             cout<<it.fi<<endl;return;
+         }
+     }
 } 
  
 int main()

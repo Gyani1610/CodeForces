@@ -50,10 +50,45 @@ double eps = 1e-12;
 #define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size()) 
- 
+ ll count(ll n)
+ {
+     ll cnt=0;
+     while(n%2==0)
+     {
+         n/=2;
+         cnt++;
+     }
+
+     return cnt;
+ }
 void Gyani()  
 {   
-     
+     ll n;
+     cin>>n;
+     ll a[n];
+     v64 v;
+     ll o=0,e=0;
+     forn(i,n)
+     {
+         cin>>a[i];
+         if(a[i]%2==0)
+         e++;
+         else
+         o++; 
+     } 
+     if(o!=0)
+     cout<<e<<endl;
+     else
+     {
+         ll x=INT_MAX;
+         forn(i,n)
+         {
+             if(a[i]%2==0)
+             x=min(x,count(a[i]));
+         }
+        ll ans=x+n-1;
+         cout<<ans<<endl;
+     }
 } 
  
 int main()
